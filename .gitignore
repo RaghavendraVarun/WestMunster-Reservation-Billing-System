@@ -1,0 +1,12 @@
+# Java
+hotelbackend/target/
+
+# Node.js
+demoreact/node_modules/
+demoreact/build/
+
+# General
+*.log
+.DS_Store
+.metadata/
+.vscode/
