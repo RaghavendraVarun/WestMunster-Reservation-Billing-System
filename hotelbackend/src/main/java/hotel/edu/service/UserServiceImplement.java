@@ -38,8 +38,7 @@ public class UserServiceImplement implements UserService{
 	    user.setUserCity(userDto.getUserCity());
 	    user.setUserPinCode(userDto.getUserPinCode());
 	    user.setUserDob(userDto.getUserDob());
-	    user.setUserCreateAt(userDto.getUserCreateAt());
-	    user.setUserUpdateAt(userDto.getUserUpdateAt());
+	
 	    user.setRole(role);
 
 	    return userRepository.save(user);
@@ -64,9 +63,6 @@ public class UserServiceImplement implements UserService{
 		        userDto.setUserTemporaryAddress(user.getUserTemporaryAddress());
 		        userDto.setUserCity(user.getUserCity());
 		        userDto.setUserPinCode(user.getUserPinCode());
-		        userDto.setUserCreateAt(user.getUserCreateAt());
-		        userDto.setUserUpdateAt(user.getUserUpdateAt());
-		        
 		        dto.add(userDto);
 		    }
 
@@ -91,8 +87,7 @@ public class UserServiceImplement implements UserService{
 		    user.setUserPinCode(userdto.getUserPinCode());
 		    user.setUserPermanentAddress(userdto.getUserPermanentAddress());
 		    user.setUserTemporaryAddress(userdto.getUserTemporaryAddress());
-		    user.setUserCreateAt(userdto.getUserCreateAt());
-		    user.setUserUpdateAt(userdto.getUserUpdateAt());
+		
 
 		    userRepository.save(user);
 		    return userdto;

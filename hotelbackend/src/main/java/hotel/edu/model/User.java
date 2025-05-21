@@ -11,6 +11,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class User {
@@ -27,7 +31,9 @@ public class User {
 	private String userTemporaryAddress;
 	private String userPinCode;
 	private String userCity;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date userUpdateAt;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date userCreateAt;
 	
 	@ManyToOne
@@ -35,14 +41,19 @@ public class User {
 	@JsonIgnore
 	private Role role;
 	
-	
+	@PrePersist
+	protected void onCreate() {
+		Date now=new Date();
+		userCreateAt=now;
+	}
+	@PreUpdate
+	protected void onUpdate() {
+		userUpdateAt=new Date();
+	}
 	
 	public int getUserId() {
 		return userId;
 	}
-
-
-
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
