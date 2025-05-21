@@ -1,4 +1,4 @@
-package hotel.main;
+package hotel.edu;
 
 import org.springframework.boot.SpringApplication;
 

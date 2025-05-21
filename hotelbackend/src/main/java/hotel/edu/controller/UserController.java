@@ -1,4 +1,4 @@
-package hotel.main.controllercls;
+package hotel.edu.controller;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import hotel.main.DTO.UserDTO;
-import hotel.main.model.User;
-import hotel.main.service.UserService;
+import hotel.edu.dto.UserDTO;
+import hotel.edu.model.User;
+import hotel.edu.service.UserService;
 
 @Controller
 public class UserController {

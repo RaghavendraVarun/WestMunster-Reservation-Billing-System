@@ -1,4 +1,4 @@
-package hotel.main.service;
+package hotel.edu.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hotel.main.DTO.UserDTO;
-import hotel.main.model.Role;
-import hotel.main.model.User;
-import hotel.main.repository.RoleRepository;
-import hotel.main.repository.UserRepository;
+import hotel.edu.dto.UserDTO;
+import hotel.edu.model.Role;
+import hotel.edu.model.User;
+import hotel.edu.repository.RoleRepository;
+import hotel.edu.repository.UserRepository;
 
 @Service
 public class UserServiceImplement implements UserService{

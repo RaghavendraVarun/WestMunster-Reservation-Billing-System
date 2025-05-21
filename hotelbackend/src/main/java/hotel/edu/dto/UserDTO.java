@@ -1,8 +1,8 @@
-package hotel.main.DTO;
+package hotel.edu.dto;
 
 import java.util.Date;
 
-import hotel.main.model.Role;
+import hotel.edu.model.Role;
 
 public class UserDTO {
 	

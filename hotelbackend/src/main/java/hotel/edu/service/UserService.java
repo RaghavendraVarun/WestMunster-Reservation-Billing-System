@@ -1,9 +1,9 @@
-package hotel.main.service;
+package hotel.edu.service;
 
 import java.util.List;
 
-import hotel.main.DTO.UserDTO;
-import hotel.main.model.User;
+import hotel.edu.dto.UserDTO;
+import hotel.edu.model.User;
 
 public interface UserService {
 

@@ -1,20 +1,20 @@
-package hotel.main.service;
+package hotel.edu.service;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hotel.main.model.Role;
-import hotel.main.repository.RoleRepository;
+import hotel.edu.model.Role;
+import hotel.edu.repository.RoleRepository;
 
 @Service
-public class RoleServiceImple implements RoleService {
+public class RoleServiceImplement implements RoleService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
 
 	@Override
 	public Role getCreate(Role role) {
-		// TODO Auto-generated method stub
 		Role role1=roleRepository.save(role);
 		return role1;
 	}

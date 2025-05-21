@@ -1,6 +1,7 @@
-package hotel.main.model;
+package hotel.edu.model;
 
 import java.util.Date;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 @Entity
 public class User {

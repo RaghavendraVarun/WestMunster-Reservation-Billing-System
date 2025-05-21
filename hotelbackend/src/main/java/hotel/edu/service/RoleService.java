@@ -1,6 +1,7 @@
-package hotel.main.service;
+package hotel.edu.service;
 
-import hotel.main.model.Role;
+
+import hotel.edu.model.Role;
 
 public interface RoleService {
 
