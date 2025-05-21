@@ -24,53 +24,120 @@ public class UserServiceImplement implements UserService{
 	@Override
 	public User getCreateUser(UserDTO userDto) {
 		
-		User user= new User();
-		Role role=roleRepository.findById(userDto.getRole().getRoleId()).orElse(null);
-		
-		
-		user.setAddress1(userDto.getAddress1());
-		user.setAddress2(userDto.getAddress2());
-		user.setCity(userDto.getCity());
-		user.setContactNumber(userDto.getContactNumber());
-		user.setCreateAt(userDto.getCreateAt());
-		user.setEmail(userDto.getEmail());
-		user.setFirstName(userDto.getFirstName());
-		user.setId(userDto.getId());
-		user.setLastName(userDto.getLastName());
-		user.setPassword(userDto.getPassword());
-		user.setPinCode(userDto.getPinCode());
-		user.setUpdateAt(userDto.getUpdateAt());
-		user.setRole(role);
-		
-		return userRepository.save(user) ;
+		    Role role = roleRepository.findById(userDto.getRole().getRoleId()).orElse(null);
+		            
+	    User user = new User();
+	    user.setUserId(userDto.getUserId());
+	    user.setUserFirstName(userDto.getUserFirstName());
+	    user.setUserLastName(userDto.getUserLastName());
+	    user.setUserEmail(userDto.getUserEmail());
+	    user.setUserPassword(userDto.getUserPassword());
+	    user.setUserContactNumber(userDto.getUserContactNumber());
+	    user.setUserPermanentAddress(userDto.getUserPermanentAddress()); 
+	    user.setUserTemporaryAddress(userDto.getUserTemporaryAddress());
+	    user.setUserCity(userDto.getUserCity());
+	    user.setUserPinCode(userDto.getUserPinCode());
+	    user.setUserDob(userDto.getUserDob());
+	    user.setUserCreateAt(userDto.getUserCreateAt());
+	    user.setUserUpdateAt(userDto.getUserUpdateAt());
+	    user.setRole(role);
+
+	    return userRepository.save(user);
 	}
 
 	@Override
 	public List<UserDTO> getFetchAllUser() {
 		
-		List<UserDTO> dto=new ArrayList<>();
-		
-		List<User> user=userRepository.findAll();
-		for(User use:user) {
-			UserDTO userDto=new UserDTO();
-			userDto.setAddress1(use.getAddress1());
-			userDto.setAddress2(use.getAddress2());
-			userDto.setCity(use.getCity());
-			userDto.setContactNumber(use.getContactNumber());
-			userDto.setCreateAt(use.getCreateAt());
-			userDto.setDob(use.getDob());
-			userDto.setEmail(use.getEmail());
-			userDto.setFirstName(use.getFirstName());
-			userDto.setId(use.getId());
-			userDto.setLastName(use.getLastName());
-			userDto.setPassword(use.getPassword());
-			userDto.setPinCode(use.getPinCode());
-			userDto.setUpdateAt(use.getUpdateAt());
-			dto.add(userDto);
+		   List<UserDTO> dto = new ArrayList<>();
+		    List<User> users = userRepository.findAll();
+
+		    for (User user : users) {
+		        UserDTO userDto = new UserDTO();
+		        userDto.setUserId(user.getUserId());
+		        userDto.setUserFirstName(user.getUserFirstName());
+		        userDto.setUserLastName(user.getUserLastName()); 
+		        userDto.setUserEmail(user.getUserEmail());
+		        userDto.setUserPassword(user.getUserPassword());
+		        userDto.setUserContactNumber(user.getUserContactNumber());
+		        userDto.setUserDob(user.getUserDob());
+		        userDto.setUserPermanentAddress(user.getUserPermanentAddress()); 
+		        userDto.setUserTemporaryAddress(user.getUserTemporaryAddress());
+		        userDto.setUserCity(user.getUserCity());
+		        userDto.setUserPinCode(user.getUserPinCode());
+		        userDto.setUserCreateAt(user.getUserCreateAt());
+		        userDto.setUserUpdateAt(user.getUserUpdateAt());
+		        
+		        dto.add(userDto);
+		    }
+
+		    return dto;
 		}
-		return dto;
-	
+
+	@Override
+	public UserDTO updateUser(int userId, UserDTO userdto) {
+		 User user = userRepository.findById(userId).orElse(null);
+		    
+		    if (user == null) {
+		        throw new RuntimeException("User not found with ID: " + userId);
+		    }
+
+		    user.setUserFirstName(userdto.getUserFirstName());
+		    user.setUserLastName(userdto.getUserLastName());
+		    user.setUserEmail(userdto.getUserEmail());
+		    user.setUserDob(userdto.getUserDob());
+		    user.setUserPassword(userdto.getUserPassword());
+		    user.setUserCity(userdto.getUserCity());
+		    user.setUserContactNumber(userdto.getUserContactNumber());
+		    user.setUserPinCode(userdto.getUserPinCode());
+		    user.setUserPermanentAddress(userdto.getUserPermanentAddress());
+		    user.setUserTemporaryAddress(userdto.getUserTemporaryAddress());
+		    user.setUserCreateAt(userdto.getUserCreateAt());
+		    user.setUserUpdateAt(userdto.getUserUpdateAt());
+
+		    userRepository.save(user);
+		    return userdto;
 	}
 
-	
-}
+
+	@Override
+	public UserDTO deleteUser(int userId) {
+		// TODO Auto-generated method stub
+		User user=userRepository.findById(userId).orElse(null);
+		
+		if (user == null) {
+	        throw new RuntimeException("User not found with ID: " + userId);
+	    }
+
+	    userRepository.delete(user);
+		
+			UserDTO userdto=new UserDTO();
+			userdto.setUserId(userId);
+			
+		return userdto;
+		
+	}
+
+//	@Override
+//	public UserDTO fetchByName(String userFirstName) {
+//		// TODO Auto-generated method stub
+//		    List< User> user = userRepository.findByName(userFirstName)
+//		        .orElseThrow(() -> new RuntimeException("User not found with name: " + userFirstName));
+//
+//		   List< UserDTO> userDto = new user();
+//		    userDto.setUserId(user.getUserId());
+//		    userDto.setUserFirstName(user.getUserFirstName());
+//		    userDto.setUserLastName(user.getUserLastName());
+//		    userDto.setUserCity(user.getUserCity());
+//		    userDto.setUserEmail(user.getUserEmail());
+//		    userDto.setUserDob(user.getUserDob());
+//		    userDto.setUserPinCode(user.getUserPinCode());
+//		    userDto.setUserPermanentAddress(user.getUserPermanentAddress());
+//		    userDto.setUserContactNumber(user.getUserContactNumber());
+//		    userDto.setUserCreateAt(user.getUserCreateAt());
+//		    userDto.setUserUpdateAt(user.getUserUpdateAt());
+//
+//		    return userDto;
+//		}
+		
+	}
+

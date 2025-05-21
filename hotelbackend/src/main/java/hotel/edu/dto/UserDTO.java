@@ -6,132 +6,140 @@ import hotel.edu.model.Role;
 
 public class UserDTO {
 	
-	private int id;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String password;
-	private String contactNumber;
-	private Date dob;
-	private String address1;
-	private String address2;
-	private Date joinDate;
-	private String pinCode;
-	private String city;
-	private Date createAt;
-	private Date updateAt;
+	private int userId;
+	private String userFirstName;
+	private String userLastName;
+	private String userEmail;
+	private String userPassword;
+	private String userContactNumber;
+	private Date userDob;
+	private String userPermanentAddress;
+	private String userTemporaryAddress;
+	private String userPinCode;
+	private String userCity;
+	private Date userUpdateAt;
+	private Date userCreateAt;
 	
 	private Role role;
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getContactNumber() {
-		return contactNumber;
-	}
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-	
-	public Date getDob() {
-		return dob;
-	}
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-	public String getAddress1() {
-		return address1;
-	}
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-	public String getAddress2() {
-		return address2;
-	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-	
-	public String getPinCode() {
-		return pinCode;
-	}
-	public void setPinCode(String pinCode) {
-		this.pinCode = pinCode;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public Date getCreateAt() {
-		return createAt;
-	}
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-	public Date getUpdateAt() {
-		return updateAt;
-	}
-	public void setUpdateAt(Date updateAt) {
-		this.updateAt = updateAt;
-	}
-	
+
+
+
 	public Role getRole() {
 		return role;
 	}
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	public UserDTO() {
-		super();
+
+	public int getUserId() {
+		return userId;
 	}
-	public UserDTO(int id, String firstName, String lastName, String email, String password, String contactNumber,
-			Date dOB, String address1, String address2, String pinCode, String city, Date createAt,
-			Date updateAt,Role role) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.contactNumber = contactNumber;
-		this.dob=dob;
-		this.address1 = address1;
-		this.address2 = address2;
-		this.pinCode = pinCode;
-		this.city = city;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-		this.role=role;
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+
+	public String getUserFirstName() {
+		return userFirstName;
+	}
+
+	public void setUserFirstName(String userFirstName) {
+		this.userFirstName = userFirstName;
+	}
+
+	public String getUserLastName() {
+		return userLastName;
+	}
+
+	public void setUserLastName(String userLastName) {
+		this.userLastName = userLastName;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	public String getUserContactNumber() {
+		return userContactNumber;
+	}
+
+	public void setUserContactNumber(String userContactNumber) {
+		this.userContactNumber = userContactNumber;
+	}
+
+	public Date getUserDob() {
+		return userDob;
+	}
+
+	public void setUserDob(Date userDob) {
+		this.userDob = userDob;
+	}
+
+	public String getUserPermanentAddress() {
+		return userPermanentAddress;
+	}
+
+	public void setUserPermanentAddress(String userPermanentAddress) {
+		this.userPermanentAddress = userPermanentAddress;
+	}
+
+	public String getUserTemporaryAddress() {
+		return userTemporaryAddress;
+	}
+
+	public void setUserTemporaryAddress(String userTemporaryAddress) {
+		this.userTemporaryAddress = userTemporaryAddress;
+	}
+
+	public String getUserPinCode() {
+		return userPinCode;
+	}
+
+	public void setUserPinCode(String userPinCode) {
+		this.userPinCode = userPinCode;
+	}
+
+	public String getUserCity() {
+		return userCity;
+	}
+
+	public void setUserCity(String userCity) {
+		this.userCity = userCity;
+	}
+
+	public Date getUserUpdateAt() {
+		return userUpdateAt;
+	}
+
+	public void setUserUpdateAt(Date userUpdateAt) {
+		this.userUpdateAt = userUpdateAt;
+	}
+
+	public Date getUserCreateAt() {
+		return userCreateAt;
+	}
+
+	public void setUserCreateAt(Date userCreateAt) {
+		this.userCreateAt = userCreateAt;
+	}
+
 	
+
+	
+	
+		
 
 }

@@ -18,8 +18,8 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int roleId;
-	private String name;
-	private String password;
+	private String roleEmail;
+	private String rolePassword;
 	
 	@OneToMany(mappedBy="role",cascade=CascadeType.ALL)
 	@JsonIgnore
@@ -38,27 +38,29 @@ public class Role {
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-	public String getName() {
-		return name;
+
+
+	public String getRoleEmail() {
+		return roleEmail;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setRoleEmail(String roleEmail) {
+		this.roleEmail = roleEmail;
 	}
-	public String getPassword() {
-		return password;
+	public String getRolePassword() {
+		return rolePassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Role(int roleId, String name, String password, List<User> user) {
-		super();
-		this.roleId = roleId;
-		this.name = name;
-		this.password = password;
-		this.user = user;
+	public void setRolePassword(String rolePassword) {
+		this.rolePassword = rolePassword;
 	}
 	public Role() {
 		super();
+	}
+	public Role(int roleId, String roleEmail, String rolePassword, List<User> user) {
+		super();
+		this.roleId = roleId;
+		this.roleEmail = roleEmail;
+		this.rolePassword = rolePassword;
+		this.user = user;
 	}
 	
 

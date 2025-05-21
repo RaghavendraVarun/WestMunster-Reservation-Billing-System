@@ -22,7 +22,7 @@ public class RoleController {
 	private RoleService roleService;
 	
 	
-	@PostMapping("/create")
+	@PostMapping("/createRole")
 	public ResponseEntity<Role> getCreate(@RequestBody Role role){
 		
 		Role role1=roleService.getCreate(role);
