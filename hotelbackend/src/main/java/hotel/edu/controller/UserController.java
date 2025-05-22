@@ -45,10 +45,12 @@ public class UserController {
 		UserDTO user=userService.deleteUser(userId);
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}
-//	@GetMapping("/fetchByName/{userFirstName}")
-//	public ResponseEntity<UserDTO> fetchByName(@PathVariable String userFirstName){
-//		UserDTO user=userService.fetchByName(userFirstName);
-//		return new ResponseEntity<>(user,HttpStatus.OK);
-//	}
+
+	@GetMapping("/fetchIdUser/{userId}")
+	public ResponseEntity<UserDTO > getFetchIdUser(@PathVariable int userId){
+		
+		UserDTO dto=userService.getFetchIdUser(userId);
+		return new ResponseEntity<>(dto,HttpStatus.OK);		
+	}
 	
 }

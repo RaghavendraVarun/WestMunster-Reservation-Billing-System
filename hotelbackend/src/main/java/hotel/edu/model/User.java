@@ -57,9 +57,6 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
-
-
 	public String getUserFirstName() {
 		return userFirstName;
 	}
@@ -222,8 +219,6 @@ public class User {
 	public User() {
 		super();
 	}
-
-
 
 	public User(int userId, String userFirstName, String userLastName, String userEmail, String userPassword,
 			String userContactNumber, Date userDob, String userPermanentAddress, String userTemporaryAddress,

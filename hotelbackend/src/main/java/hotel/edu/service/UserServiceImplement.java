@@ -112,27 +112,25 @@ public class UserServiceImplement implements UserService{
 		
 	}
 
-//	@Override
-//	public UserDTO fetchByName(String userFirstName) {
-//		// TODO Auto-generated method stub
-//		    List< User> user = userRepository.findByName(userFirstName)
-//		        .orElseThrow(() -> new RuntimeException("User not found with name: " + userFirstName));
-//
-//		   List< UserDTO> userDto = new user();
-//		    userDto.setUserId(user.getUserId());
-//		    userDto.setUserFirstName(user.getUserFirstName());
-//		    userDto.setUserLastName(user.getUserLastName());
-//		    userDto.setUserCity(user.getUserCity());
-//		    userDto.setUserEmail(user.getUserEmail());
-//		    userDto.setUserDob(user.getUserDob());
-//		    userDto.setUserPinCode(user.getUserPinCode());
-//		    userDto.setUserPermanentAddress(user.getUserPermanentAddress());
-//		    userDto.setUserContactNumber(user.getUserContactNumber());
-//		    userDto.setUserCreateAt(user.getUserCreateAt());
-//		    userDto.setUserUpdateAt(user.getUserUpdateAt());
-//
-//		    return userDto;
-//		}
+	@Override
+	public UserDTO getFetchIdUser(int userId) {
+		UserDTO dto=new UserDTO();
+		User user=userRepository.findById(userId).orElseThrow(() ->new RuntimeException("not found"));
+		dto.setRole(user.getRole());
+		dto.setUserCity(user.getUserCity());
+		dto.setUserContactNumber(user.getUserContactNumber());
+		dto.setUserDob(user.getUserDob());
+		dto.setUserEmail(user.getUserEmail());
+		dto.setUserId(user.getUserId());
+		dto.setUserFirstName(user.getUserFirstName());
+		dto.setUserLastName(user.getUserLastName());
+		dto.setUserPermanentAddress(user.getUserPermanentAddress());
+		dto.setUserTemporaryAddress(user.getUserTemporaryAddress());
+		
+		return dto;
+	}
+
+
 		
 	}
 
