@@ -56,7 +56,7 @@ public class UserController {
 	
 	@PostMapping("/create/{email}/{password}")
 	public ResponseEntity<User> getCreate(@RequestBody CheckUser check) {
-		User use=userService.getCreateUser(check);
+		User use=userService.getCreate(check);
 		return new ResponseEntity<>(use,HttpStatus.CREATED);
 	}
 	

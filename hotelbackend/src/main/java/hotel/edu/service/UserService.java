@@ -20,7 +20,7 @@ public interface UserService {
 
 	UserDTO getFetchIdUser(int userId);
 
-	User getCreateUser(CheckUser check);
+	User getCreate(CheckUser check);
 
 	
 

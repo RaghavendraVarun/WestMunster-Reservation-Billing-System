@@ -133,7 +133,7 @@ public class UserServiceImplement implements UserService{
 	}
 
 	@Override
-	public User getCreateUser(CheckUser check) {
+	public User getCreate(CheckUser check) {
 		// TODO Auto-generated method stub
 		User user=userRepository.findByEmailAndPassword(check.getEmail(),check.getPassword());
 		return user;
