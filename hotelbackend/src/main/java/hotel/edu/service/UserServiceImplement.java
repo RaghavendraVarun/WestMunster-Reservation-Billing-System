@@ -115,7 +115,7 @@ public class UserServiceImplement implements UserService{
 	@Override
 	public UserDTO getFetchIdUser(int userId) {
 		UserDTO dto=new UserDTO();
-		User user=userRepository.findById(userId).orElseThrow(() ->new RuntimeException("not found"));
+		User user=userRepository.findById(userId).orElse(null);
 		dto.setRole(user.getRole());
 		dto.setUserCity(user.getUserCity());
 		dto.setUserContactNumber(user.getUserContactNumber());
