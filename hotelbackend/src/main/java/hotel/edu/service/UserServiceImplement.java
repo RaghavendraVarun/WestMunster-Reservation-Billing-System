@@ -1,12 +1,16 @@
 package hotel.edu.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.aspectj.weaver.ast.HasAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hotel.edu.dto.UserDTO;
+import hotel.edu.model.CheckUser;
 import hotel.edu.model.Role;
 import hotel.edu.model.User;
 import hotel.edu.repository.RoleRepository;
@@ -24,24 +28,25 @@ public class UserServiceImplement implements UserService{
 	@Override
 	public User getCreateUser(UserDTO userDto) {
 		
-		    Role role = roleRepository.findById(userDto.getRole().getRoleId()).orElse(null);
+	
+		Role role = roleRepository.findById(userDto.getRole().getRoleId()).orElse(null);
 		            
 	    User user = new User();
+	    user.setCity(userDto.getCity());
+	    user.setContactNumber(userDto.getContactNumber());
+	    user.setDob(userDto.getDob());
+	    user.setEmail(userDto.getEmail());
+	    user.setPassword(userDto.getPassword());
+	    user.setPermanentAddress(userDto.getPermanentAddress());
+	    user.setPinCode(userDto.getPinCode());
+	    user.setTemporaryAddress(userDto.getTemporaryAddress());
 	    user.setUserId(userDto.getUserId());
-	    user.setUserFirstName(userDto.getUserFirstName());
-	    user.setUserLastName(userDto.getUserLastName());
-	    user.setUserEmail(userDto.getUserEmail());
-	    user.setUserPassword(userDto.getUserPassword());
-	    user.setUserContactNumber(userDto.getUserContactNumber());
-	    user.setUserPermanentAddress(userDto.getUserPermanentAddress()); 
-	    user.setUserTemporaryAddress(userDto.getUserTemporaryAddress());
-	    user.setUserCity(userDto.getUserCity());
-	    user.setUserPinCode(userDto.getUserPinCode());
-	    user.setUserDob(userDto.getUserDob());
-	
-	    user.setRole(role);
-
-	    return userRepository.save(user);
+	    user.setCreateBy(userDto.getRole().getRoleId());
+	    user.setUpdateBy(userDto.getRole().getRoleId());
+	    
+	   
+	      return  userRepository.save(user);
+	    
 	}
 
 	@Override
@@ -53,16 +58,15 @@ public class UserServiceImplement implements UserService{
 		    for (User user : users) {
 		        UserDTO userDto = new UserDTO();
 		        userDto.setUserId(user.getUserId());
-		        userDto.setUserFirstName(user.getUserFirstName());
-		        userDto.setUserLastName(user.getUserLastName()); 
-		        userDto.setUserEmail(user.getUserEmail());
-		        userDto.setUserPassword(user.getUserPassword());
-		        userDto.setUserContactNumber(user.getUserContactNumber());
-		        userDto.setUserDob(user.getUserDob());
-		        userDto.setUserPermanentAddress(user.getUserPermanentAddress()); 
-		        userDto.setUserTemporaryAddress(user.getUserTemporaryAddress());
-		        userDto.setUserCity(user.getUserCity());
-		        userDto.setUserPinCode(user.getUserPinCode());
+		        userDto.setUserName(user.getUserName());
+		        userDto.setEmail(user.getEmail());
+		        userDto.setPassword(user.getPassword());
+		        userDto.setContactNumber(user.getContactNumber());
+		        userDto.setDob(user.getDob());
+		        userDto.setPermanentAddress(user.getPermanentAddress()); 
+		        userDto.setTemporaryAddress(user.getTemporaryAddress());
+		        userDto.setCity(user.getCity());
+		        userDto.setPinCode(user.getPinCode());
 		        dto.add(userDto);
 		    }
 
@@ -77,16 +81,15 @@ public class UserServiceImplement implements UserService{
 		        throw new RuntimeException("User not found with ID: " + userId);
 		    }
 
-		    user.setUserFirstName(userdto.getUserFirstName());
-		    user.setUserLastName(userdto.getUserLastName());
-		    user.setUserEmail(userdto.getUserEmail());
-		    user.setUserDob(userdto.getUserDob());
-		    user.setUserPassword(userdto.getUserPassword());
-		    user.setUserCity(userdto.getUserCity());
-		    user.setUserContactNumber(userdto.getUserContactNumber());
-		    user.setUserPinCode(userdto.getUserPinCode());
-		    user.setUserPermanentAddress(userdto.getUserPermanentAddress());
-		    user.setUserTemporaryAddress(userdto.getUserTemporaryAddress());
+		    user.setUserName(userdto.getUserName());
+		    user.setEmail(userdto.getEmail());
+		    user.setDob(userdto.getDob());
+		    user.setPassword(userdto.getPassword());
+		    user.setCity(userdto.getCity());
+		    user.setContactNumber(userdto.getContactNumber());
+		    user.setPinCode(userdto.getPinCode());
+		    user.setPermanentAddress(userdto.getPermanentAddress());
+		    user.setTemporaryAddress(userdto.getTemporaryAddress());
 		
 
 		    userRepository.save(user);
@@ -117,18 +120,26 @@ public class UserServiceImplement implements UserService{
 		UserDTO dto=new UserDTO();
 		User user=userRepository.findById(userId).orElse(null);
 		dto.setRole(user.getRole());
-		dto.setUserCity(user.getUserCity());
-		dto.setUserContactNumber(user.getUserContactNumber());
-		dto.setUserDob(user.getUserDob());
-		dto.setUserEmail(user.getUserEmail());
+		dto.setCity(user.getCity());
+		dto.setContactNumber(user.getContactNumber());
+		dto.setDob(user.getDob());
+		dto.setEmail(user.getEmail());
 		dto.setUserId(user.getUserId());
-		dto.setUserFirstName(user.getUserFirstName());
-		dto.setUserLastName(user.getUserLastName());
-		dto.setUserPermanentAddress(user.getUserPermanentAddress());
-		dto.setUserTemporaryAddress(user.getUserTemporaryAddress());
+		dto.setUserName(user.getUserName());
+		dto.setPermanentAddress(user.getPermanentAddress());
+		dto.setTemporaryAddress(user.getTemporaryAddress());
 		
 		return dto;
 	}
+
+	@Override
+	public User getCreateUser(CheckUser check) {
+		// TODO Auto-generated method stub
+		User user=userRepository.findByEmailAndPassword(check.getEmail(),check.getPassword());
+		return user;
+	}
+
+	
 
 
 		

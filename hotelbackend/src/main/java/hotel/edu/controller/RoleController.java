@@ -29,11 +29,11 @@ public class RoleController {
 	
 	
 	@PostMapping("/createRole")
-	public ResponseEntity<Role> getCreate(@RequestBody Role role){
+	public String getCreate(@RequestBody Role role){
 		
 		Role role1=roleService.getCreate(role);
 		 
-		return new ResponseEntity<>(role1,HttpStatus.CREATED);
+		return "create Succussful";
 		
 	}
 	
@@ -60,7 +60,7 @@ public  ResponseEntity<Role> getFetchId(@PathVariable int roleId){
  @DeleteMapping("/deleteRole/{roleId}")
  public String getDelete(@PathVariable int roleId) {
 	 String role=roleService.getDelete(roleId);
-	 return "delted";
+	 return "deleted";
 
  }
 }

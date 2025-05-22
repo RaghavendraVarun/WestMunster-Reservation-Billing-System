@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import hotel.edu.dto.UserDTO;
+import hotel.edu.model.CheckUser;
 import hotel.edu.model.User;
 
 public interface UserService {
@@ -18,6 +19,10 @@ public interface UserService {
 	UserDTO deleteUser(int userId);
 
 	UserDTO getFetchIdUser(int userId);
+
+	User getCreateUser(CheckUser check);
+
+	
 
 
 	

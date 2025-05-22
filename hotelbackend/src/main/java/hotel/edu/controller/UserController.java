@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import hotel.edu.dto.UserDTO;
+import hotel.edu.model.CheckUser;
 import hotel.edu.model.User;
 import hotel.edu.service.UserService;
 
@@ -25,9 +26,9 @@ public class UserController {
 	
 	
 	@PostMapping("/createUser")
-	public ResponseEntity<User> getCreateUser(@RequestBody UserDTO userDto){
+	public ResponseEntity<String> getCreateUser(@RequestBody UserDTO userDto){
 		User use=userService.getCreateUser(userDto);
-		return new ResponseEntity<>(use,HttpStatus.CREATED);
+		return  new ResponseEntity<>("create successfully",HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getFetchAllUser")
@@ -36,21 +37,27 @@ public class UserController {
 		return new ResponseEntity<>(userDto,HttpStatus.OK);
 	}
 	@PutMapping("/updateUser/{userId}")
-	public ResponseEntity<UserDTO> updateUser(@PathVariable int userId , @RequestBody UserDTO userdto) {
+	public ResponseEntity<String> updateUser(@PathVariable int userId , @RequestBody UserDTO userdto) {
 	    UserDTO updatedUser = userService.updateUser(userId, userdto);
-	    return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+	    return new ResponseEntity<>("update successufully", HttpStatus.OK);
 	}
 	@DeleteMapping("/deleteUser/{userId}")
-	public ResponseEntity<UserDTO> deleteUser(@PathVariable int userId){
+	public ResponseEntity<String> deleteUser(@PathVariable int userId){
 		UserDTO user=userService.deleteUser(userId);
-		return new ResponseEntity<>(user,HttpStatus.OK);
+		return new ResponseEntity<>("delete successfully",HttpStatus.OK);
 	}
 
 	@GetMapping("/fetchIdUser/{userId}")
-	public ResponseEntity<UserDTO > getFetchIdUser(@PathVariable int userId){
+	public ResponseEntity<String > getFetchIdUser(@PathVariable int userId){
 		
 		UserDTO dto=userService.getFetchIdUser(userId);
-		return new ResponseEntity<>(dto,HttpStatus.OK);		
+		return new ResponseEntity<>("fetch successfully",HttpStatus.OK);		
+	}
+	
+	@PostMapping("/create/{email}/{password}")
+	public ResponseEntity<User> getCreate(@RequestBody CheckUser check) {
+		User use=userService.getCreateUser(check);
+		return new ResponseEntity<>(use,HttpStatus.CREATED);
 	}
 	
 }
