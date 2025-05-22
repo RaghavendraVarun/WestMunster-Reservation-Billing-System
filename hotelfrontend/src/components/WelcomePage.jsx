@@ -5,7 +5,7 @@ export const WelcomePage = () => {
   const navigate=useNavigate();
 
   const GoToReservationPage = () => {
-    navigate("/login")
+    navigate("/reservation")
   }
   
   return (
