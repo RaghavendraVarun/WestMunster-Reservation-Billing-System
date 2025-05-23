@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import hotel.edu.model.RoomType;
+import hotel.edu.model.User;
 import lombok.Data;
 @Data
 public class AmenitiesDTO {
