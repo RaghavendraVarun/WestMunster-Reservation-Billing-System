@@ -1,7 +1,7 @@
 package hotel.edu.model;
 
+import java.time.LocalDate;
 import java.util.Date;
-
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,42 +13,38 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
 
-
 @Data
 @Entity
-public class User {
+@Table(name="roomNumber_allocation")
+public class RoomNumberAllocation {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int userId;
-	private  String userName;
-	private String email;
-	private String password;
-	private String contactNumber;
-	private Date dob;
-	private String permanentAddress;
-	private String temporaryAddress;
-	private String pinCode;
-	private String city;
-	private int createBy;
+	private int roomId;
+	private String roomNumber;
+	private String landLineNumber;
+	private int  updateBy;
+	private int createdBy;
+	  
+	private Date createDate;
 	private Date updateDate;
-	private int updateBy;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createAt;
 	
 	@ManyToOne
-	@JoinColumn(name="roleId")
+	@JoinColumn(name="locationId")
 	@JsonIgnore
-	private Role role;
+	private RoomLocationSetUp roomLocationSetUp;
+	
+	
 	
 	@PrePersist
 	protected void onCreate() {
-		Date now=new Date();
-		createAt=now;
+		Date date=new Date();
+		createDate=date;
 	}
 	
 	@PreUpdate
@@ -56,4 +52,5 @@ public class User {
 		updateDate=new Date();
 	}
 
+	
 }

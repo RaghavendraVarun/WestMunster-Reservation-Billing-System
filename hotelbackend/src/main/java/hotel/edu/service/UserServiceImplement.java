@@ -7,8 +7,11 @@ import java.util.Map;
 
 import org.aspectj.weaver.ast.HasAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import hotel.edu.dto.CheckUserDTO;
 import hotel.edu.dto.UserDTO;
 import hotel.edu.model.CheckUser;
 import hotel.edu.model.Role;
@@ -40,11 +43,11 @@ public class UserServiceImplement implements UserService{
 	    user.setPermanentAddress(userDto.getPermanentAddress());
 	    user.setPinCode(userDto.getPinCode());
 	    user.setTemporaryAddress(userDto.getTemporaryAddress());
+	    user.setUserName(userDto.getUserName());
 	    user.setUserId(userDto.getUserId());
 	    user.setCreateBy(userDto.getRole().getRoleId());
 	    user.setUpdateBy(userDto.getRole().getRoleId());
-	    
-	   
+	    user.setRole(userDto.getRole());
 	      return  userRepository.save(user);
 	    
 	}
@@ -67,6 +70,7 @@ public class UserServiceImplement implements UserService{
 		        userDto.setTemporaryAddress(user.getTemporaryAddress());
 		        userDto.setCity(user.getCity());
 		        userDto.setPinCode(user.getPinCode());
+		        
 		        dto.add(userDto);
 		    }
 
@@ -75,13 +79,12 @@ public class UserServiceImplement implements UserService{
 
 	@Override
 	public UserDTO updateUser(int userId, UserDTO userdto) {
+		
 		 User user = userRepository.findById(userId).orElse(null);
 		    
-		    if (user == null) {
-		        throw new RuntimeException("User not found with ID: " + userId);
-		    }
-
-		    user.setUserName(userdto.getUserName());
+		  
+		 	user.setUserId(userdto.getUserId());
+	        user.setUserName(userdto.getUserName());
 		    user.setEmail(userdto.getEmail());
 		    user.setDob(userdto.getDob());
 		    user.setPassword(userdto.getPassword());
@@ -90,6 +93,8 @@ public class UserServiceImplement implements UserService{
 		    user.setPinCode(userdto.getPinCode());
 		    user.setPermanentAddress(userdto.getPermanentAddress());
 		    user.setTemporaryAddress(userdto.getTemporaryAddress());
+		    user.setUpdateBy(userdto.getRole().getRoleId());
+		   
 		
 
 		    userRepository.save(user);
@@ -102,10 +107,6 @@ public class UserServiceImplement implements UserService{
 		// TODO Auto-generated method stub
 		User user=userRepository.findById(userId).orElse(null);
 		
-		if (user == null) {
-	        throw new RuntimeException("User not found with ID: " + userId);
-	    }
-
 	    userRepository.delete(user);
 		
 			UserDTO userdto=new UserDTO();
@@ -120,6 +121,8 @@ public class UserServiceImplement implements UserService{
 		UserDTO dto=new UserDTO();
 		User user=userRepository.findById(userId).orElse(null);
 		dto.setRole(user.getRole());
+		dto.setUpdateBy(user.getUpdateBy());
+		dto.setCreateBy(user.getCreateBy());
 		dto.setCity(user.getCity());
 		dto.setContactNumber(user.getContactNumber());
 		dto.setDob(user.getDob());
@@ -128,20 +131,37 @@ public class UserServiceImplement implements UserService{
 		dto.setUserName(user.getUserName());
 		dto.setPermanentAddress(user.getPermanentAddress());
 		dto.setTemporaryAddress(user.getTemporaryAddress());
+		dto.setUserId(user.getUserId());
 		
 		return dto;
 	}
-
-	@Override
-	public User getCreate(CheckUser check) {
-		// TODO Auto-generated method stub
-		User user=userRepository.findByEmailAndPassword(check.getEmail(),check.getPassword());
-		return user;
-	}
-
 	
+    	
+	  
+	@Override
+	public Object userLogin(CheckUserDTO check) {
+	    String email = check.getEmail();
+	    String password = check.getPassword();
+	    Map<String, Object> map = new HashMap<>();
+	    User userTable = userRepository.getUserLoginDetail(email);
+	    
+	    if(userTable == null) {
+	    	map.put("status", "error");
+	        map.put("message", "Invalid email");
+	        return map;
+	    }
 
+	    if (password.equals(userTable.getPassword())) {
+	        map.put("status", "success");
+	        map.put("message", "Login successfully");
 
-		
+	    } else {
+	        map.put("status", "error");
+	        map.put("message", "Invalid password");
+	    }
+        return map;
+
+	}
+	
 	}
 

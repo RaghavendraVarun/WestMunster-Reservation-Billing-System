@@ -2,7 +2,9 @@ package hotel.edu.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 
+import hotel.edu.dto.CheckUserDTO;
 import hotel.edu.dto.UserDTO;
 import hotel.edu.model.CheckUser;
 import hotel.edu.model.User;
@@ -20,7 +22,8 @@ public interface UserService {
 
 	UserDTO getFetchIdUser(int userId);
 
-	User getCreate(CheckUser check);
+	Object userLogin(CheckUserDTO check);
+
 
 	
 

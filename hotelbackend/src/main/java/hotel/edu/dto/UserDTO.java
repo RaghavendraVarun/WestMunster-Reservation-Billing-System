@@ -9,7 +9,7 @@ import lombok.Data;
 public class UserDTO {
 	
 	private int userId;
-	private String userName;
+	private  String userName;
 	private String email;
 	private String password;
 	private String contactNumber;
@@ -18,7 +18,9 @@ public class UserDTO {
 	private String temporaryAddress;
 	private String pinCode;
 	private String city;
-	private Date updateAt;
+	private int createBy;
+	private Date updateDate;
+	private int updateBy;
 	private Date createAt;
 	
 	private Role role;
