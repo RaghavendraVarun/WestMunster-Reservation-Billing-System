@@ -3,6 +3,7 @@ package hotel.edu.dto;
 import java.util.Date;
 
 import hotel.edu.model.RoomType;
+import hotel.edu.model.User;
 import lombok.Data;
 @Data
 public class SeasonDTO {
@@ -12,9 +13,11 @@ public class SeasonDTO {
 	private Date startDate;
 	private Date endDate;
 	private int createdBy;
-	private int uodateDate;
+	private int updatedBy;
 	private Date createdDate;
 	private Date updateDate;
+	
 	private RoomType roomType;
+	private User user;
 
 }

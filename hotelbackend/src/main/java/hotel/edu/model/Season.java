@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -28,7 +30,7 @@ public class Season {
 	private Date startDate;
 	private Date endDate;
 	private int createdBy;
-	private int uodateDate;
+	private int updatedBy;
 	private Date createdDate;
 	private Date updateDate;
 	
@@ -36,6 +38,22 @@ public class Season {
 	@JoinColumn(name="roomTypeId")
 	@JsonIgnore
 	private RoomType roomType;
+	
+	@ManyToOne
+	@JoinColumn(name="userId")
+	@JsonIgnore
+	private User user;
+	
+	@PrePersist
+	protected void onCreate() {
+		Date date=new Date();
+		createdDate=date;
+	}
+	
+	@PreUpdate
+	protected void onUpdate() {
+		updateDate=new Date();
+	}
 	
 
 }

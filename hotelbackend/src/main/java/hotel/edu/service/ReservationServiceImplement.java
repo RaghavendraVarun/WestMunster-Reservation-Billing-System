@@ -2,6 +2,9 @@ package hotel.edu.service;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,6 @@ public class ReservationServiceImplement implements ReservationService{
 
 @Override
 public Reservation createReservation(ReservationDTO reservationDTO) {
-	// TODO Auto-generated method stub
 	
 	Reservation reservation=new Reservation();
 	reservation.setReservationId(reservationDTO.getReservationId());
@@ -33,6 +35,55 @@ public Reservation createReservation(ReservationDTO reservationDTO) {
 
 	return reservationrepository.save(reservation);
 	}
+	
+@Override
+public ReservationDTO getFetchIdReservation(int reservationId) {
+    Reservation reservation = reservationrepository.findById(reservationId).orElse(null);
+    if (reservation == null) {
+        return null; 
+    }
+
+    ReservationDTO dto = new ReservationDTO();
+    dto.setReservationId(reservation.getReservationId());
+    dto.setBookingStatus(reservation.getBookingStatus());
+    dto.setCheckInDate(reservation.getCheckInDate());
+    dto.setCheckOutDate(reservation.getCheckOutDate());
+    dto.setNoOfGuests(reservation.getNoOfGuests());
+    dto.setNoOfRooms(reservation.getNoOfRooms());
+    dto.setTotalCost(reservation.getTotalCost());
+    dto.setReservedBy(reservation.getReservedBy());
+    dto.setUpdatedBy(reservation.getUpdatedBy());
+    dto.setReservedDate(reservation.getReservedDate());
+    dto.setUpdateDate(reservation.getUpdateDate());
+
+    return dto;
+}
+
+@Override
+public List<ReservationDTO> getFetchAllReservations() {
+    List<Reservation> reservations = reservationrepository.findAll();
+    List<ReservationDTO> dtoList = new ArrayList<>();
+
+    for (Reservation reservation : reservations) {
+        ReservationDTO dto = new ReservationDTO();
+        dto.setReservationId(reservation.getReservationId());
+        dto.setBookingStatus(reservation.getBookingStatus());
+        dto.setCheckInDate(reservation.getCheckInDate());
+        dto.setCheckOutDate(reservation.getCheckOutDate());
+        dto.setNoOfGuests(reservation.getNoOfGuests());
+        dto.setNoOfRooms(reservation.getNoOfRooms());
+        dto.setTotalCost(reservation.getTotalCost());
+        dto.setReservedBy(reservation.getReservedBy());
+        dto.setUpdatedBy(reservation.getUpdatedBy());
+        dto.setReservedDate(reservation.getReservedDate());
+        dto.setUpdateDate(reservation.getUpdateDate());
+
+        dtoList.add(dto);
+    }
+
+    return dtoList;
+}
+
 
 
 }

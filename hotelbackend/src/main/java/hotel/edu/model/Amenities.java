@@ -3,6 +3,8 @@ package hotel.edu.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -12,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -38,6 +41,12 @@ public class Amenities {
 	    inverseJoinColumns = @JoinColumn(name = "roomTypeId")
 	)
 	private List<RoomType> roomType;
+	
+	@ManyToOne
+	@JoinColumn(name="userId")
+	@JsonIgnore
+	private User user;
+	
 	
 	@PrePersist
 	protected void onCreate() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import hotel.edu.model.RoomNumberAllocation;
 import hotel.edu.model.RoomType;
+import hotel.edu.model.User;
 import lombok.Data;
 
 @Data
@@ -21,6 +22,7 @@ public class RoomLocationSetUpDTO {
 	
 	private List<RoomNumberAllocation> roomNumberAllocation;
 	private RoomType roomType;
+    private User user;
 
 
 }

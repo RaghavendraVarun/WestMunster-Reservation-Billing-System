@@ -26,7 +26,7 @@ export const LoginPage = () => {
       // Logging response to debug
       console.log("API Response:", response.data);
       if (response?.status === 200) {
-        navigate("/Homepage");
+        navigate("/homepage");
         Swal.fire({
           title:"Log in successfully",
           icon:'success',
@@ -45,7 +45,7 @@ export const LoginPage = () => {
       // }
     } catch (err) {
       console.error("Error logging in user:", err);
-      alert("An error occurred during login. Please try again.");
+      alert("Wrong login details.");
     }
   };
   return (

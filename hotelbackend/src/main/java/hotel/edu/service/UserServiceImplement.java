@@ -32,7 +32,9 @@ public class UserServiceImplement implements UserService{
 	public User getCreateUser(UserDTO userDto) {
 		
 	
-		Role role = roleRepository.findById(userDto.getRole().getRoleId()).orElse(null);
+//		Role role = roleRepository.findById(userDto.getRole().getRoleId()).orElse(null);
+		
+		
 		            
 	    User user = new User();
 	    user.setCity(userDto.getCity());
@@ -154,6 +156,7 @@ public class UserServiceImplement implements UserService{
 	    if (password.equals(userTable.getPassword())) {
 	        map.put("status", "success");
 	        map.put("message", "Login successfully");
+	        map.put("user", userTable);
 
 	    } else {
 	        map.put("status", "error");

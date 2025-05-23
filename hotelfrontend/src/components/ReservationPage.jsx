@@ -25,6 +25,11 @@ export const ReservationPage = () => {
         try {
            
                 const response = await HotelService.createReservation(reservations);
+                
+                const user=localStorage.getItem("user");
+                
+                
+
                 console.log(response)
                 setReservation(response.data)
                 if (response.status === 201) {

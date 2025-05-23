@@ -42,6 +42,11 @@ public class RoomLocationSetUp {
 	@JsonIgnore
 	private RoomType roomType;
 	
+	@ManyToOne
+	@JoinColumn(name="userId")
+	@JsonIgnore
+	private User user;
+	
 	@PrePersist
 	protected void onCreate() {
 		Date date=new Date();
