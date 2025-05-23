@@ -7,6 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,13 +30,19 @@ public class RoomNumberAllocation {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="room_id")
 	private int roomId;
+	@Column(name="room_number")
 	private String roomNumber;
+	@Column(name="land_line_number")
 	private String landLineNumber;
+	@Column(name="update_by")
 	private int  updateBy;
+	@Column(name="created_by")
 	private int createdBy;
-	  
+	@Column(name="create_date")
 	private Date createDate;
+	@Column(name="update_date")
 	private Date updateDate;
 	
 	

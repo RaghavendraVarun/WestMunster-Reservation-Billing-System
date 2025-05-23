@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,14 +25,23 @@ public class Season {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="season_id")
 	private int seasonId;
+	@Column(name="season_name")
 	private String seasonName;
+	@Column(name="price")
 	private double price;
+	@Column(name="startdate")
 	private Date startDate;
+	@Column(name="end_date")
 	private Date endDate;
+	@Column(name="created_by")
 	private int createdBy;
+	@Column(name="updated_by")
 	private int updatedBy;
+	@Column(name="created_date")
 	private Date createdDate;
+	@Column(name="update_date")
 	private Date updateDate;
 	
 	@ManyToOne

@@ -15,7 +15,6 @@ export const PaymentPage = () => {
         const { name, value } = e.target;
         setUser((prev) => ({ ...prev, [name]: value }));
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const users = { ...user };
@@ -30,9 +29,8 @@ export const PaymentPage = () => {
                     alert("payment  successfully");
                     navigate("/login");
                 }
-            
         } catch (err) {
-            console.log("Error saving register", err);
+         console.log("Error saving register", err);
         }
     };
   return (
@@ -51,7 +49,7 @@ export const PaymentPage = () => {
             <Form.Label>paymentMode:</Form.Label>
             <Form.Control type="text" placeholder="Enter the paymentMode" name="paymentMode" onChange={handleChange} value={user.paymentMode}/>
             </Col>
-              <Col md={12}>
+            <Col md={12}>
             <Form.Label className="mt-6">amount:</Form.Label>
             <Form.Control  type="number" placeholder="Enter the amount" name="amount" onChange={handleChange} value={user.amount}/>
            </Col>
@@ -60,7 +58,7 @@ export const PaymentPage = () => {
         <Form.Control type="date" placeholder="Enter the billDateTime" name="billDateTime" onChange={handleChange} value={user.billDateTime}/>
         </Col>
       </Form.Group>
-        <button type="submit" style={{margin:"10px 100px"}}>Submit</button>
+      <button type="submit" style={{margin:"10px 100px"}}>Submit</button>
     </Form>
   </div>
 </div>

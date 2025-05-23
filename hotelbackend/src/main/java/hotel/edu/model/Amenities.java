@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,12 +27,20 @@ import lombok.Data;
 public class Amenities {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="amenity_id")
 	private int amenityId;
+	@Column(name="amenities_type")
 	private String amenitiesType;
+	@Column(name="update_by")
 
 	private int  updateBy;
+	@Column(name="created_by")
+
 	private int createdBy; 
+	@Column(name="create_date")
+
 	private Date createDate;
+	@Column(name="update_date")
 	private Date updateDate;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
