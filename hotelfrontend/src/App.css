@@ -46,31 +46,46 @@
   left: 50%;
   bottom: 15%;
 }
-.register-box{
+
+.register-box {
   position: absolute;
   margin: 200px 350px;
   transform: translate(-50%, -50%);
   background-color: rgba(70, 65, 65, 0.8);
-  padding: 30px;
+  padding: 30px 40px;
+  width: 500px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #00000050;
+  box-shadow: 0px 0px 10px #00000050;
+  color: white; 
 }
+
 .login-box {
   position: relative;
   top:300px;
   left:130%;
   transform: translate(-50%, -50%);
   background-color: rgba(70, 65, 65, 0.8);
-  padding: 30px;
+  padding: 30px 40px;
+  width:400px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #00000050;
+  box-shadow: 0px 0px 10px #00000050;
 }
-.reservation-box{
-    position: absolute;
+
+.reservation-box {
+  position: absolute;
+  left: 50%;
   margin: 200px 350px;
   transform: translate(-50%, -50%);
   background-color: rgba(70, 65, 65, 0.8);
-  padding: 30px;
+  padding: 30px 40px;
+  width: 400px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px #00000050;
+  box-shadow: 0px 0px 10px #00000050;
+}
+
+.login {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

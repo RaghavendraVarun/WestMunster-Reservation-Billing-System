@@ -19,5 +19,7 @@ public class SeasonDTO {
 	
 	private RoomType roomType;
 	private User user;
+	
+	
 
 }
