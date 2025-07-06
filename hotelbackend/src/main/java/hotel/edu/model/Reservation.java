@@ -1,11 +1,12 @@
 package hotel.edu.model;
 
+
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,10 +25,10 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ReservationId")
-    private int reservationId;
+    @Column(name = "reservation_id")
+    private Integer reservationId;
 
-    @Column(name = "BookingStatus")
+    @Column(name = "booking_status")
     private String bookingStatus;
 
     @Column(name = "check_in_date")
@@ -36,35 +37,34 @@ public class Reservation {
     @Column(name = "check_out_date")
     private LocalDateTime checkOutDate;
 
-    @Column(name = "NumberOfGuests")
-    private int noOfGuests;
+    @Column(name = "number_of_guests")
+    private Integer numberOfGuests;
 
-    @Column(name = "Totalcost")
-    private double totalCost;
+    @Column(name = "total_cost")
+    private Double totalCost;
 
     @Column(name = "number_of_rooms")
-    private int noOfRooms;
+    private Integer numberOfRooms;
 
-    @Column(name = "ReservedBy")
-    private int reservedBy;
+    @Column(name = "reserved_by")
+    private Integer reservedBy;
 
-    @Column(name = "UpdatedBy")
-    private int updatedBy;
+    @Column(name = "updated_by")
+    private Integer updatedBy;
 
-    @Column(name = "ReservedDate")
+    @Column(name = "reserved_date")
     private Date reservedDate;
 
-    @Column(name = "updateDate")
+    @Column(name = "update_date")
     private Date updateDate;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name="user_id")
     private User user;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id", referencedColumnName = "paymentId")
+    @OneToOne(mappedBy = "reservation")
     private Payment payment;
-
+    
     @PrePersist
 	protected void onCreate() {
 		Date now=new Date();

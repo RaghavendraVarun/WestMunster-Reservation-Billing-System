@@ -7,8 +7,7 @@ import lombok.Data;
 
 @Data
 public class UserDTO {
-	
-	private int userId;
+	private Integer userId;
 	private  String userName;
 	private String email;
 	private String password;
@@ -18,12 +17,8 @@ public class UserDTO {
 	private String temporaryAddress;
 	private String pinCode;
 	private String city;
-	private int createBy;
-	private Date updateDate;
-	private int updateBy;
-	private Date createAt;
-	
-	private Role role;
+	private Integer createBy;
+	private Integer roleId;
 
 	
 

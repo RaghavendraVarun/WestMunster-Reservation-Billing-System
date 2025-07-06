@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import hotel.edu.dto.CheckUserDTO;
+import hotel.edu.dto.CheckUser;
 import hotel.edu.dto.UserDTO;
-import hotel.edu.model.CheckUser;
+import hotel.edu.dto.UserLoginDTO;
 import hotel.edu.model.User;
 
 public interface UserService {
 
-	User getCreateUser(UserDTO userDto);
+	Object getCreateUser(UserDTO userDto);
 
 	List<UserDTO> getFetchAllUser();
 
@@ -22,7 +22,7 @@ public interface UserService {
 
 	UserDTO getFetchIdUser(int userId);
 
-	Object userLogin(CheckUserDTO check);
+	Object userLogin(UserLoginDTO check);
 
 
 	

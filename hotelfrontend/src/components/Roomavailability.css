@@ -1,0 +1,105 @@
+.room-availability-wrapper {
+  text-align: center;
+  padding: 20px;
+}
+
+.floor-selector {
+  margin: 20px 0;
+}
+
+.room-layout {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 550px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: black;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+/* Room zones in 4 directions */
+.room-zone {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  min-width: 100px;
+}
+
+/* Position each zone */
+.room-zone.front {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.room-zone.back {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.room-zone.left {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.room-zone.right {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.zone-label {
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.room-button {
+  padding: 6px 12px;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.room-button:hover {
+  background-color: #e0e0e0;
+}
+
+.room-button.selected {
+  background-color: #dc3545;
+  color: white;
+}
+
+.selected-info {
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+/* .room-button.active {
+  background-color: #007bff;
+  color: white;
+}
+.direction-box {
+  min-height: 200px;
+} */

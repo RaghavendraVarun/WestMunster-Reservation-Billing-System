@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hotel.edu.dto.CheckUserDTO;
+import hotel.edu.dto.CheckUser;
+import hotel.edu.dto.DatesDTO;
 import hotel.edu.dto.UserDTO;
-import hotel.edu.model.CheckUser;
+import hotel.edu.dto.UserLoginDTO;
 import hotel.edu.model.User;
 import hotel.edu.service.UserService;
 
@@ -31,9 +32,8 @@ public class UserController {
 	
 	
 	@PostMapping("/createUser")
-	public ResponseEntity<String> getCreateUser(@RequestBody UserDTO userDto){
-		User use=userService.getCreateUser(userDto);
-		return  new ResponseEntity<>("create successfully",HttpStatus.CREATED);
+	public Object getCreateUser(@RequestBody UserDTO userDto){
+		return userService.getCreateUser(userDto);
 	}
 	
 	@GetMapping("/getFetchAllUser")
@@ -54,21 +54,16 @@ public class UserController {
 	}
 
 	@GetMapping("/fetchIdUser/{userId}")
-	public ResponseEntity<String > getFetchIdUser(@PathVariable int userId){
+	public ResponseEntity<UserDTO> getFetchIdUser(@PathVariable int userId){
 		
 		UserDTO dto=userService.getFetchIdUser(userId);
-		return new ResponseEntity<>("fetch successfully",HttpStatus.OK);		
+		return new ResponseEntity<>(dto,HttpStatus.OK);		
 	}
 	
 	@PostMapping("/userLogin")
-	public ResponseEntity<Object> userLogin(@RequestBody CheckUserDTO check) {
-	    Map<String, Object> response = (Map<String, Object>) userService.userLogin(check);
+	public Object userLogin(@RequestBody UserLoginDTO check) {
+		return userService.userLogin(check);
 
-	    if ("error".equals(response.get("status"))) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); 
-	    } else {
-	        return ResponseEntity.ok(response); 
-	    }
 	}
 	
 	

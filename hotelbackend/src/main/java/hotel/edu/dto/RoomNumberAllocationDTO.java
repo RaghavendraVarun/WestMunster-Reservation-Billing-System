@@ -9,15 +9,16 @@ import lombok.Data;
 @Data
 public class RoomNumberAllocationDTO {
 	
-	private int roomId;
 	private String roomNumber;
 	private String landLineNumber;
-	private int  updateBy;
-	private int createdBy;
-	private Date createDate;
-	private Date updateDate;
-	private RoomLocationSetUp roomLocationSetUp;
-	private User user;
+	private Integer userId;
+	private String direction;
+	private Integer floorNumber;
+	private String roomTypeName;
+	private Integer locationId;
+	
+	private Integer roomId;
 
 
 }
+

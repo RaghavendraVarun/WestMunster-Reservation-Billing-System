@@ -1,22 +1,37 @@
-import { useNavigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import './../App.css';
 export const WelcomePage = () => {
-  
-  const navigate=useNavigate();
 
-  const GoToReservationPage = () => {
-    navigate("/reservation")
-  }
-  
-  return (
-    <div className='position-relative'> 
-        <div className='w-1'>
-            <img src="/images/Bellagio-Hotel-Casino-Las-Vegas.webp"  alt="Hotel Frame" className="img-fluid w-100 shadow-sm"/>
+
+    return (
+        <div className='position-relative'>
+           <div
+      style={{
+        minHeight: '76vh',
+        backgroundImage: "url('images/Admin.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'left',
+        backgroundRepeat: 'no-repeat',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: '2rem',
+        position: 'relative',
+      }}
+    >
+        
+            {/* <button
+        onClick={() => Navigate(-1)}
+        className='btn btn-secondary btn-sm'
+        style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 10 }}
+      >
+        ← Back
+      </button> */}
+            <div className='position-absolute text-white translate-middle top-50 start-50'>
+                <h2 className='fw-bold' style={{ textDecoration: 'underline', color:"red"  }}>WELCOME TO</h2>
+                <h1 className='fw-bold' style={{ fontfamily: 'Georgia,serif', textSize: "48px", color:"dark red" }}>WEST MUNSTER HOTEL</h1>
+            </div>
         </div>
-        <div class='position-absolute text-white translate-middle top-50 start-50'>
-             <h1 className='display-3 fw-bold'> WELCOME TO <br></br>WEST MUNSTER HOTEL</h1>
-             <button className="btn mt-3 btn-lg fw-bold" style={{ backgroundColor: "#B87300" }} onClick={()=>GoToReservationPage()}>RESERVE A ROOM</button>
         </div>
-    </div>
-  )
+    )
 }

@@ -1,221 +1,510 @@
+
+// import React, { useEffect, useState } from 'react';
+// import { useNavigate, Link, useParams } from 'react-router-dom';
+// import Swal from 'sweetalert2';
+// import { HotelService } from './HotelService/HotelService';
+
+// export const RegisterPage = () => {
+//   const navigate = useNavigate();
+//   const [user, setUser] = useState({
+//     userName: '', email: '', password: '', contactNumber: '',
+//     dob: '', permanentAddress: '', temporaryAddress: '',
+//     pinCode: '', city: '', roleId: 2,
+//   });
+//   const [errMsgs, setErrMsgs] = useState({});
+//     const { userId } =useParams();
+
+
+//   const handleChange = ({ target: { name, value } }) => {
+//     // const { name, value } = target;
+//     setUser(prev => ({ ...prev, [name]: value }));
+//     setErrMsgs(prev => ({ ...prev, [name]: '' }));
+//   };
+// const validate = () => {
+//   const e = {};
+
+
+//   // Username validation
+//   if (!user.userName.trim()) {
+//     e.userName = 'Username is required';
+//   } else if (!/^[A-Za-z ]+$/.test(user.userName.trim())) {
+//     e.userName = 'Only letters allowed';
+//   } else if (user.userName.length > 45) {
+//     e.userName = 'Max 45 characters';
+//   }
+
+//   // Email validation
+//   if (!user.email.trim()) {
+//     e.email = 'Email is required';
+//   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email.trim())) {
+//     e.email = 'Invalid email';
+//   }
+
+//   // Password validation
+//   if (!user.password.trim()) {
+//     e.password = 'Password is required';
+//   } else if (user.password.length < 8) {
+//     e.password = 'Min 8 characters';
+//   }
+
+//   // Contact Number validation
+//   if (!user.contactNumber.trim()) {
+//     e.contactNumber = 'Contact is required';
+//   } else if (!/^\d{10}$/.test(user.contactNumber.trim())) {
+//     e.contactNumber = 'Must be 10 digits';
+//   }
+
+//   // Date of Birth validation
+//   if (!user.dob.trim()) {
+//     e.dob = 'Date of birth is required';
+//   }
+
+//   // Permanent Address validation
+//   if (!user.permanentAddress.trim()) {
+//     e.permanentAddress = 'Permanent address is required';
+//   } else if (user.permanentAddress.length > 225) {
+//     e.permanentAddress = 'Max 225 characters';
+//   }
+
+//   // Temporary Address validation
+//   if (!user.temporaryAddress.trim()) {
+//     e.temporaryAddress = 'Temporary address is required';
+//   } else if (user.temporaryAddress.length > 225) {
+//     e.temporaryAddress = 'Max 225 characters';
+//   }
+
+//   // Pincode validation
+//   if (!user.pinCode.trim()) {
+//     e.pinCode = 'PinCode is required';
+//   } else if (!/^\d{6}$/.test(user.pinCode.trim())) {
+//     e.pinCode = 'Must be 6 digits';
+//   }
+
+//   // City validation (updated for only letters and spaces)
+//   if (!user.city.trim()) {
+//     e.city = 'City is required';
+//   } else if (!/^[A-Za-z\s]+$/.test(user.city.trim())) {
+//     e.city = 'City must contain only letters';
+//   } else if (user.city.length > 45) {
+//     e.city = 'Max 45 characters';
+//   }
+
+//   return e;
+// };
+
+  
+//   useEffect(() => {
+//     fetchDetails(userId);
+//   }, [userId]);
+
+//   const fetchDetails = async (userId) => {
+//     if (userId) {
+//       try {
+//         const response = await HotelService.fetchUser(userId);
+//         // setUser({
+//         //   userName: response.data.userName,
+//         //   email: response.data.email,
+//         //   contactNumber: response.data.contactNumber,
+//         //   dob: response.data.dob,
+//         //   permanentAddress: response.data.permanentAddress,
+//         //   temporaryAddress: response.data.temporaryAddress,
+//         //   pinCode: response.data.pinCode,
+//         //   city: response.data.city,
+//         //   role: {
+//         //     roleId: 2,
+//         //   },
+//         // });
+//         setUser({
+//   userName: response.data.userName || '',
+//   email: response.data.email || '',
+//   password: '', // Keep it blank for security
+//   contactNumber: response.data.contactNumber || '',
+//   dob: response.data.dob || '',
+//   permanentAddress: response.data.permanentAddress || '',
+//   temporaryAddress: response.data.temporaryAddress || '',
+//   pinCode: response.data.pinCode || '',
+//   city: response.data.city || '',
+//   roleId: response.data.roleId || 2, // Use what's in response or default
+// });
+
+//         console.log("user is :",user)
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const errors = validate();
+//     setErrMsgs(errors);
+//     if (Object.keys(errors).length) return;
+//     if(userId){
+
+//         const response = await HotelService.updateRegister(user,userId);
+//       if (response.status === 200) {
+//         Swal.fire({
+//           icon: 'success',
+//           title: 'Updated  successfully',
+//         });
+//         navigate(-1);
+//       }
+//     }
+//     else{
+
+//     try {
+//       const res = await HotelService.createRegister(user);
+//       if (res.status === 200 || res.status === 201) {
+//         Swal.fire({ icon: 'success', title: 'Registration Successful!' });
+//         navigate('/login');
+//       } else {
+//         Swal.fire({ icon: 'error', title: 'Registration Failed', text: 'Try again later.' });
+//       }
+//     } catch (err) {
+//       Swal.fire({
+//         icon : 'error',
+//         title: 'Server Error',
+//         text : err.response?.data?.message || 'Something went wrong!',
+//       });
+//     }
+//   }
+//   };
+
+//   return (
+//     <div className="container-fluid d-flex flex-row p-0" style={{ minHeight: '120vh',paddingTop:'3rem ' }}>
+//       {/* Left: Background Image Only */}
+      
+//       <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center"
+//            style={{
+//              backgroundImage: 'url("/images/register.jpg")',
+//              backgroundSize: 'cover',
+//              backgroundPosition: 'center',
+//              height:'80vh',
+//              position: 'relative',
+//            }}>
+//             <button
+//                 onClick={() => navigate(-1)}
+//                 className='btn btn-secondary btn-sm'
+//                 style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 10 }}
+//             >
+//                 ← Back
+//             </button>
+//       </div>
+
+//       {/* Right: Form Card */}
+//       <div className="col-md-6 d-flex align-items-center justify-content-center p-4">
+//         <div className="w-100" style={{
+//           maxWidth: 550, background: '#fff', borderRadius: 20,
+//           boxShadow: '0 0 25px rgba(0,0,0,0.1)', padding: 30,
+//           textAlign:'left'
+//         }}>
+//           <h2 className="text-center mb-4">User Registration</h2>
+//           <form onSubmit={handleSubmit}>
+//             {/* Username */}
+//             <div className="mb-3">
+//               <label className="form-label fw-semibold">User Name</label>
+//               <input name="userName" className="form-control" value={user.userName}
+//                      onChange={handleChange} />
+//               {errMsgs.userName && <small className="text-danger">{errMsgs.userName}</small>}
+//             </div>
+
+//             {/* Email + Password */}
+//             <div className="row">
+//               <div className="col-md-6 mb-3">
+//                 <label className="form-label fw-semibold">Email</label>
+//                 <input name="email" className="form-control" value={user.email}
+//                        onChange={handleChange} />
+//                 {errMsgs.email && <small className="text-danger">{errMsgs.email}</small>}
+//               </div>
+//               <div className="col-md-6 mb-3">
+//                 <label className="form-label fw-semibold">Password</label>
+//                 <input type="password" name="password" className="form-control"
+//                        value={user.password} onChange={handleChange} />
+//                 {/* {errMsgs.password && <small className="text-danger">{errMsgs.password}</small>} */}
+//               </div>
+//             </div>
+
+//             {/* DOB + Contact */}
+//             <div className="row">
+//               <div className="col-md-6 mb-3">
+//                 <label className="form-label fw-semibold">Date of Birth</label>
+//                 <input type="date" name="dob" className="form-control"
+//                        value={user.dob} onChange={handleChange} />
+//                 {errMsgs.dob && <small className="text-danger">{errMsgs.dob}</small>}
+//               </div>
+//               <div className="col-md-6 mb-3">
+//                 <label className="form-label fw-semibold">Contact Number</label>
+//                 <input name="contactNumber" className="form-control"
+//                        value={user.contactNumber} onChange={handleChange} />
+//                 {errMsgs.contactNumber && <small className="text-danger">{errMsgs.contactNumber}</small>}
+//               </div>
+//             </div>
+
+//             {/* Permanent Address */}
+//             <div className="mb-3">
+//               <label className="form-label fw-semibold">Permanent Address</label>
+//               <input name="permanentAddress" className="form-control"
+//                      value={user.permanentAddress} onChange={handleChange} />
+//               {errMsgs.permanentAddress && <small className="text-danger">{errMsgs.permanentAddress}</small>}
+//             </div>
+
+//             {/* Temporary Address */}
+//             <div className="mb-3">
+//               <label className="form-label fw-semibold">Temporary Address</label>
+//               <input name="temporaryAddress" className="form-control"
+//                      value={user.temporaryAddress} onChange={handleChange} />
+//               {errMsgs.temporaryAddress && <small className="text-danger">{errMsgs.temporaryAddress}</small>}
+//             </div>
+
+//             {/* City + Pin Code */}
+//             <div className="row">
+//               <div className="col-md-6 mb-3">
+//                 <label className="form-label fw-semibold">City</label>
+//                 <input name="city" className="form-control" value={user.city}
+//                        onChange={handleChange} />
+//                 {errMsgs.city && <small className="text-danger">{errMsgs.city}</small>}
+//               </div>
+//               <div className="col-md-6 mb-3">
+//                 <label className="form-label fw-semibold">Pin Code</label>
+//                 <input name="pinCode" className="form-control" value={user.pinCode}
+//                        onChange={handleChange} />
+//                 {errMsgs.pinCode && <small className="text-danger">{errMsgs.pinCode}</small>}
+//               </div>
+//             </div>
+
+//             {/* Submit */}
+//             <button className="btn w-100 mb-3" style={{
+//               background: '#f9bf7b', border: 'none', fontWeight: 600
+//             }}>
+//               Register
+//             </button>
+
+//             {/* Login link */}
+//             <div className="text-center small">
+//               Already registered? <Link to="/login">Login here</Link>
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
 import React, { useState } from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { HotelService } from './HotelService/HotelService';
+import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { HotelService } from './HotelService/HotelService';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
-
   const [user, setUser] = useState({
-    userName: '',
-    email: '',
-    password: '',
-    contactNumber: '',
-    dob: '',
-    permanentAddress: '',
-    temporaryAddress: '',
-    pinCode: '',
-    city: '',
-    role: {
-      roleId: 1,
-    },
+    userName: '', email: '', password: '', contactNumber: '',
+    dob: '', permanentAddress: '', temporaryAddress: '',
+    pinCode: '', city: '', roleId: 2,
   });
+  const [errMsgs, setErrMsgs] = useState({});
 
-  const [errMsgs, setErrMsgs] = useState({
-    userName: '',
-    email: '',
-    password: '',
-    contactNumber: '',
-    dob: '',
-    permanentAddress: '',
-    temporaryAddress: '',
-    pinCode: '',
-    city: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
-
-    const updatedErrors = { ...errMsgs };
-
-    switch (name) {
-      case 'userName':
-  updatedErrors.userName =
-    value === '' ? 'Username is required' :
-    value.length > 45 ? 'Username must be less than 45 characters' :
-    !/^[A-Za-z]+$/.test(value) ? 'Username must contain only letters' : '';
-  break;
-
-      case 'email':
-        updatedErrors.email =
-          value === '' ? 'Email is required' :
-          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? 'Enter a valid email address' : '';
-        break;
-
-      case 'password':
-        updatedErrors.password =
-          value === '' ? 'Password is required' :
-          value.length < 8 ? 'Password must be at least 8 characters' : '';
-        break;
-
-      case 'contactNumber':
-        updatedErrors.contactNumber =
-          value === '' ? 'Contact number is required' :
-          !/^\d{10}$/.test(value) ? 'Contact number must be exactly 10 digits' : '';
-        break;
-
-      case 'dob':
-        updatedErrors.dob = value === '' ? 'Date of Birth is required' : '';
-        break;
-
-      case 'permanentAddress':
-        updatedErrors.permanentAddress =
-          value === '' ? 'Permanent address is required' :
-          value.length > 225 ? 'Address must be less than 225 characters' : '';
-        break;
-
-      case 'temporaryAddress':
-        updatedErrors.temporaryAddress =
-          value === '' ? 'Temporary address is required' :
-          value.length > 225 ? 'Address must be less than 225 characters' : '';
-        break;
-
-      case 'pinCode':
-        updatedErrors.pinCode =
-          value === '' ? 'Pincode is required' :
-          !/^\d{6}$/.test(value) ? 'Pincode must be exactly 6 digits' : '';
-        break;
-
-      case 'city':
-        updatedErrors.city =
-          value === '' ? 'City is required' :
-          value.length > 45 ? 'City must be less than 45 characters' : '';
-        break;
-
-      default:
-        break;
-    }
-
-    setErrMsgs(updatedErrors);
+  const handleChange = ({ target: { name, value } }) => {
+    setUser(prev => ({ ...prev, [name]: value }));
+    setErrMsgs(prev => ({ ...prev, [name]: '' }));
   };
+const validate = () => {
+  const e = {};
+
+  // Username validation
+  if (!user.userName.trim()) {
+    e.userName = 'Username is required';
+  } else if (!/^[A-Za-z ]+$/.test(user.userName.trim())) {
+    e.userName = 'Only letters allowed';
+  } else if (user.userName.length > 45) {
+    e.userName = 'Max 45 characters';
+  }
+
+  // Email validation
+  if (!user.email.trim()) {
+    e.email = 'Email is required';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email.trim())) {
+    e.email = 'Invalid email';
+  }
+
+  // Password validation
+  if (!user.password.trim()) {
+    e.password = 'Password is required';
+  } else if (user.password.length < 8) {
+    e.password = 'Min 8 characters';
+  }
+
+  // Contact Number validation
+  if (!user.contactNumber.trim()) {
+    e.contactNumber = 'Contact is required';
+  } else if (!/^\d{10}$/.test(user.contactNumber.trim())) {
+    e.contactNumber = 'Must be 10 digits';
+  }
+
+  // Date of Birth validation
+  if (!user.dob.trim()) {
+    e.dob = 'Date of birth is required';
+  }
+
+  // Permanent Address validation
+  if (!user.permanentAddress.trim()) {
+    e.permanentAddress = 'Permanent address is required';
+  } else if (user.permanentAddress.length > 225) {
+    e.permanentAddress = 'Max 225 characters';
+  }
+
+  // Temporary Address validation
+  if (!user.temporaryAddress.trim()) {
+    e.temporaryAddress = 'Temporary address is required';
+  } else if (user.temporaryAddress.length > 225) {
+    e.temporaryAddress = 'Max 225 characters';
+  }
+
+  // Pincode validation
+  if (!user.pinCode.trim()) {
+    e.pinCode = 'PinCode is required';
+  } else if (!/^\d{6}$/.test(user.pinCode.trim())) {
+    e.pinCode = 'Must be 6 digits';
+  }
+
+  // City validation (updated for only letters and spaces)
+  if (!user.city.trim()) {
+    e.city = 'City is required';
+  } else if (!/^[A-Za-z\s]+$/.test(user.city.trim())) {
+    e.city = 'City must contain only letters';
+  } else if (user.city.length > 45) {
+    e.city = 'Max 45 characters';
+  }
+
+  return e;
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const hasErrors = Object.values(errMsgs).some((msg) => msg !== '') ||
-                      Object.values(user).some((val) => typeof val === 'string' && val.trim() === '');
-
-    if (hasErrors) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Please fix validation errors before submitting',
-      });
-      return;
-    }
+    const errors = validate();
+    setErrMsgs(errors);
+    if (Object.keys(errors).length) return;
 
     try {
-      const response = await HotelService.createRegister(user);
-      if (response.status === 201) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Register created successfully',
-        });
-        navigate("/login");
+      const res = await HotelService.createRegister(user);
+      if (res.status === 200 || res.status === 201) {
+        Swal.fire({ icon: 'success', title: 'Registration Successful!' });
+        navigate('/login');
+      } else {
+        Swal.fire({ icon: 'error', title: 'Registration Failed', text: 'Try again later.' });
       }
     } catch (err) {
-      console.error("Error saving register", err);
+      Swal.fire({
+        icon : 'error',
+        title: 'Server Error',
+        text : err.response?.data?.message || 'Something went wrong!',
+      });
     }
   };
 
   return (
-    <div className="login">
-      <img
-        src="/images/Bellagio-Hotel-Casino-Las-Vegas.webp"
-        alt="Hotel Frame"
-        className="img-fluid w-100 shadow-sm"
-      />
-      <div className="position-absolute text-white translate-middle top-50 start-50">
-        <div className="register-box">
-          <h1>Register</h1>
-          <Form className="form2" onSubmit={handleSubmit}>
-            <Form.Group>
-              <Row>
-                <Col md={12}>
-                  <Form.Label>UserName:</Form.Label>
-                  <Form.Control
-                    type="text"  placeholder="Enter the username" name="userName"  onChange={handleChange}  value={user.userName}
-                  />
-                  {errMsgs.userName && <small className="text-danger">{errMsgs.userName}</small>}
-                </Col>
-              </Row>
+    <div className="container-fluid d-flex flex-row p-0" style={{ minHeight: '120vh',paddingTop:'3rem ' }}>
+      {/* Left: Background Image Only */}
+      <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center"
+           style={{
+             backgroundImage: 'url("/images/register.jpg")',
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+             height:'80vh',
+             position: 'relative',
+           }}>
+      </div>
 
-              <Row className="mt-3">
-                <Col md={6}>
-                  <Form.Label>Email:</Form.Label>
-                  <Form.Control
-                    type="text"  placeholder="Enter the email"  name="email"  onChange={handleChange}  value={user.email}
-                  />
-                  {errMsgs.email && <small className="text-danger">{errMsgs.email}</small>}
-                </Col>
-                <Col md={6}>
-                  <Form.Label>Password:</Form.Label>
-                  <Form.Control
-                    type="password"  placeholder="Enter the password"  name="password"  onChange={handleChange}  value={user.password}
-                  />
-                  {errMsgs.password && <small className="text-danger">{errMsgs.password}</small>}
-                </Col>
-              </Row>
+      {/* Right: Form Card */}
+      <div className="col-md-6 d-flex align-items-center justify-content-center p-4">
+        <div className="w-100" style={{
+          maxWidth: 550, background: '#fff', borderRadius: 20,
+          boxShadow: '0 0 25px rgba(0,0,0,0.1)', padding: 30,
+        }}>
+          <h2 className="text-center mb-4">User Registration</h2>
+          <form onSubmit={handleSubmit}>
+            {/* Username */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">User Name</label>
+              <input name="userName" className="form-control" value={user.userName}
+                     onChange={handleChange} />
+              {errMsgs.userName && <small className="text-danger">{errMsgs.userName}</small>}
+            </div>
 
-              <Row className="mt-3">
-                <Col md={6}>
-                  <Form.Label>DOB:</Form.Label>
-                  <Form.Control 
-                   type="date"  name="dob"  onChange={handleChange}  value={user.dob}
-                  />
-                  {errMsgs.dob && <small className="text-danger">{errMsgs.dob}</small>}
-                </Col>
-                <Col md={6}>
-                  <Form.Label>Contact:</Form.Label>
-                  <Form.Control
-                    type="text"  placeholder="Enter the contact"  name="contactNumber"  onChange={handleChange}  value={user.contactNumber}
-                  />
-                  {errMsgs.contactNumber && <small className="text-danger">{errMsgs.contactNumber}</small>}
-                </Col>
-              </Row>
+            {/* Email + Password */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Email</label>
+                <input name="email" className="form-control" value={user.email}
+                       onChange={handleChange} />
+                {errMsgs.email && <small className="text-danger">{errMsgs.email}</small>}
+              </div>
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Password</label>
+                <input type="password" name="password" className="form-control"
+                       value={user.password} onChange={handleChange} />
+                {errMsgs.password && <small className="text-danger">{errMsgs.password}</small>}
+              </div>
+            </div>
 
-              <Form.Label className="mt-3">Permanent Address:</Form.Label>
-              <Form.Control
-                type="text"  placeholder="Enter the address"  name="permanentAddress"  onChange={handleChange}  value={user.permanentAddress}
-              />
+            {/* DOB + Contact */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Date of Birth</label>
+                <input type="date" name="dob" className="form-control"
+                       value={user.dob} onChange={handleChange} />
+                {errMsgs.dob && <small className="text-danger">{errMsgs.dob}</small>}
+              </div>
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Contact Number</label>
+                <input name="contactNumber" className="form-control"
+                       value={user.contactNumber} onChange={handleChange} />
+                {errMsgs.contactNumber && <small className="text-danger">{errMsgs.contactNumber}</small>}
+              </div>
+            </div>
+
+            {/* Permanent Address */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Permanent Address</label>
+              <input name="permanentAddress" className="form-control"
+                     value={user.permanentAddress} onChange={handleChange} />
               {errMsgs.permanentAddress && <small className="text-danger">{errMsgs.permanentAddress}</small>}
-
-              <Form.Label className="mt-3">Temporary Address:</Form.Label>
-              <Form.Control
-                type="text"  placeholder="Enter the address"  name="temporaryAddress"  onChange={handleChange}  value={user.temporaryAddress}
-              />
+            </div>
+            {/* Temporary Address */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Temporary Address</label>
+              <input name="temporaryAddress" className="form-control"
+                     value={user.temporaryAddress} onChange={handleChange} />
               {errMsgs.temporaryAddress && <small className="text-danger">{errMsgs.temporaryAddress}</small>}
+            </div>
+            {/* City + Pin Code */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">City</label>
+                <input name="city" className="form-control" value={user.city}
+                       onChange={handleChange} />
+                {errMsgs.city && <small className="text-danger">{errMsgs.city}</small>}
+              </div>
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-semibold">Pin Code</label>
+                <input name="pinCode" className="form-control" value={user.pinCode}
+                       onChange={handleChange} />
+                {errMsgs.pinCode && <small className="text-danger">{errMsgs.pinCode}</small>}
+              </div>
+            </div>
 
-              <Row className="mt-3">
-                <Col md={6}>
-                  <Form.Label>City:</Form.Label>
-                  <Form.Control
-                    type="text"  placeholder="Enter the city"  name="city"  onChange={handleChange}  value={user.city}
-                  />
-                  {errMsgs.city && <small className="text-danger">{errMsgs.city}</small>}
-                </Col>
-                <Col md={6}>
-                  <Form.Label>Pincode:</Form.Label>
-                  <Form.Control
-                    type="text"  placeholder="Enter the pincode"  name="pinCode"  onChange={handleChange}  value={user.pinCode}
-                  />
-                  {errMsgs.pinCode && <small className="text-danger">{errMsgs.pinCode}</small>}
-                </Col>
-              </Row>
-            </Form.Group>
-            <button type="submit" style={{ margin: "10px 100px" }}>Submit</button>
-          </Form>
+            {/* Submit */}
+            <button className="btn w-100 mb-3" style={{
+              background: '#f9bf7b', border: 'none', fontWeight: 600
+            }}>
+              Register
+            </button>
+
+            {/* Login link */}
+            <div className="text-center small">
+              Already registered? <Link to="/login">Login here</Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>

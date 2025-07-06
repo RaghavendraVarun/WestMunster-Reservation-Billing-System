@@ -8,11 +8,10 @@ import lombok.Data;
 @Data
 public class FeedbackDTO {
 
-	private int feedbackId;
 	private String comment;
 	private Double rating;
 	private Date dateTime;
-	private int userId;
+	private Integer userId;
 	
 	
 }

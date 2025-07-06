@@ -1,8 +1,16 @@
 import {  Row, Col } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 
 export const RoomdetailsPage = () => {
     return(
         <div>
+            <button
+        onClick={() => Navigate(-1)}
+        className='btn btn-secondary btn-sm'
+        style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 10 }}
+      >
+        ← Back
+      </button>
             <Row>
                 <Col>
                   <img src="/images/Bellagio-Hotel-Casino-Las-Vegas.webp"  alt="Hotel Frame" className='roomimg'/>
@@ -10,7 +18,7 @@ export const RoomdetailsPage = () => {
                 <Col>
                 <Row>
                 <Col>
-                <h1>Suite Room</h1>
+                <h1>Super Deluxe Room</h1>
                 <p>It includes  1 Queen size bed,private Kitchen,bathroom and  some living spaces.</p>
                 <p>Offers light breakfast coffee or tea and rolls with jam.</p>
                 <Row>

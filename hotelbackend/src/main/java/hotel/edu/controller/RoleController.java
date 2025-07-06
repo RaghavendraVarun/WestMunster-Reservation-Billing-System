@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hotel.edu.model.Role;
@@ -30,12 +31,9 @@ public class RoleController {
 	
 	
 	@PostMapping("/createRole")
-	public String getCreate(@RequestBody Role role){
-		
-		Role role1=roleService.getCreate(role);
-		 
-		return "create Succussful";
-		
+	public Object getCreate(@RequestParam String roleName){
+		return roleService.getCreate(roleName);
+		 		
 	}
 	
  @GetMapping("/fetchAllRole")

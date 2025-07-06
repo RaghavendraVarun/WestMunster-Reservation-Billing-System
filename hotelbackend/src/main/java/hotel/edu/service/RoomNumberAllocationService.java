@@ -7,10 +7,15 @@ import hotel.edu.model.RoomNumberAllocation;
 
 public interface RoomNumberAllocationService {
 
+
+	
+
+	RoomNumberAllocationDTO getFetchIdRoomnumber(int roomId);
+
 	RoomNumberAllocation createRoomnumberAllocation(RoomNumberAllocationDTO rnadto);
 
 	List<RoomNumberAllocationDTO> getFetchAllRNA();
 
-	RoomNumberAllocationDTO getFetchIdRoomnumber(int roomId);
+	RoomNumberAllocationDTO getUpdateAllocation(RoomNumberAllocationDTO allocationdto);
 
 }

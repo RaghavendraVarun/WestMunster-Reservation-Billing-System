@@ -6,20 +6,15 @@ import java.util.List;
 import hotel.edu.model.Amenities;
 import hotel.edu.model.RoomLocationSetUp;
 import hotel.edu.model.Season;
+import hotel.edu.model.User;
 import lombok.Data;
 @Data
 public class RoomTypeDTO {
-	private int roomTypeId;
-	private String roomTypeName;
-	private int totalRoom;
-	private int capacity;
-	private int  updateBy;
-	private int createdBy; 
-	private Date createDate;
-	private Date updateDate;
-	private List<Amenities> amenities;
-	private List<Season> season;
-	private List<RoomLocationSetUp> roomLocationSetUp;
 
+	private String roomTypeName;
+	private Integer totalRoom;
+	private Integer capacity;	
+	private Integer UserId;
+	private Integer roomTypeId;
 
 }

@@ -7,11 +7,12 @@ import lombok.Data;
 
 @Data
 public class PaymentDTO {
-	 private int paymentId;
-     private Date dateTime;
+	
+	private Date billDateTime;
      private String paymentMode;
      private Double amount;
-     private int status;
+     private Integer status;
+     private Integer reservationId;	
 
      
 }

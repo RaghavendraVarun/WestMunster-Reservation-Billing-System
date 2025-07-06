@@ -7,7 +7,7 @@ import hotel.edu.model.Role;
 
 public interface RoleService {
 
-	Role getCreate(Role role);
+	Object getCreate (String roleName);
 
 	List<Role> getFetchAll();
 

@@ -13,6 +13,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u where u.email = :email")
 	User getUserLoginDetail(@Param("email") String email);
+//
+//	Optional<User> findByEmail(String email);
+
+	int countByEmail(String email);
+
 
 		
 	

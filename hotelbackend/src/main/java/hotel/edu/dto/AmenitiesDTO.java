@@ -8,14 +8,13 @@ import hotel.edu.model.User;
 import lombok.Data;
 @Data
 public class AmenitiesDTO {
-	private int amenityId;
+	
 	private String amenitiesType;
-
-	private int  updateBy;
-	private int createdBy; 
+	private Integer  updateBy;
+	private Integer createdBy; 
 	private Date createDate;
 	private Date updateDate;
-	private List<RoomType> roomType;
-	private User user;
+	private Integer roomTypeId;
+	private Integer userId;
 
 }
